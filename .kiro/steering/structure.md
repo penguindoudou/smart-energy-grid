@@ -1,25 +1,84 @@
 # Project Structure
 
 ## Directory Layout
-[Describe your project's folder structure and organization]
+```
+NordicFlux/
+├── backend/
+│   ├── app/
+│   │   ├── engine/
+│   │   │   ├── mpc.py              # EnergyOptimizer class (CVXPY)
+│   │   │   ├── thermal_learning.py # RC parameter regression
+│   │   │   └── degradation.py      # Battery degradation modeling
+│   │   ├── adapters/
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py             # Abstract EnergyDevice
+│   │   │   ├── tesla.py            # TeslaAdapter (cloud API)
+│   │   │   ├── victron.py          # VictronAdapter (cloud API)
+│   │   │   ├── nibe.py             # NibeAdapter (myUplink API)
+│   │   │   └── mqtt.py             # MqttAdapter (Pi gateway)
+│   │   ├── services/
+│   │   │   ├── price_service.py    # Energi Data Service integration
+│   │   │   ├── weather_service.py  # Met.no integration
+│   │   │   └── device_discovery.py # Auto-detection service
+│   │   ├── models/
+│   │   │   └── database.py         # SQLAlchemy models
+│   │   ├── api/
+│   │   │   └── routes.py           # FastAPI endpoints
+│   │   └── main.py                 # FastAPI app
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   │   ├── Simulator.tsx       # Savings simulation
+│   │   │   ├── Dashboard.tsx       # Live status
+│   │   │   └── Onboarding.tsx      # Device auto-detection
+│   │   └── App.tsx
+│   ├── package.json
+│   └── Dockerfile
+├── gateway/
+│   ├── adapters/
+│   │   ├── nibe_gateway.py         # NIBE F-series Modbus
+│   │   └── huawei_gateway.py       # Huawei inverter gateway
+│   ├── mqtt_bridge.py              # Generic MQTT bridge
+│   └── requirements.txt
+├── docker-compose.yml
+└── .kiro/
+```
 
 ## File Naming Conventions
-[How files and directories should be named]
+**Python**: snake_case for files and functions, PascalCase for classes
+**TypeScript**: PascalCase for components, camelCase for functions
+**Config**: lowercase with hyphens (docker-compose.yml)
 
 ## Module Organization
-[How code is organized into modules, packages, or components]
+**Backend**: Domain-driven structure (engine, adapters, services, models, api)
+**Frontend**: Feature-based components with shared utilities
+**Gateway**: Single-purpose lightweight scripts
 
 ## Configuration Files
-[Location and purpose of config files]
+**Backend**: .env for secrets, settings.py for app config
+**Frontend**: .env.local for API endpoints
+**Docker**: docker-compose.yml for orchestration
+**Database**: alembic/ for migrations
 
 ## Documentation Structure
-[Where and how documentation is organized]
+**API**: OpenAPI/Swagger auto-generated docs
+**Code**: Docstrings for MPC physics and optimization logic
+**Setup**: README.md with Docker Compose instructions
+**Architecture**: docs/ folder for system design
 
 ## Asset Organization
-[How images, styles, and other assets are structured]
+**Frontend**: public/ for static assets, src/assets/ for bundled resources
+**Images**: Optimized formats, lazy loading for charts
 
 ## Build Artifacts
-[Where compiled/generated files are placed]
+**Backend**: __pycache__/, .pytest_cache/
+**Frontend**: dist/, node_modules/
+**Docker**: Built images, volumes for persistent data
 
 ## Environment-Specific Files
-[How different environments (dev, staging, prod) are handled]
+**Development**: docker-compose.override.yml
+**Production**: docker-compose.prod.yml
+**Testing**: pytest.ini, .env.test
