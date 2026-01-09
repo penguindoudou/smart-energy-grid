@@ -12,22 +12,42 @@
 ## Architecture Overview
 **Zero-Cost Data Sources**:
 - **Price Data**: Energi Data Service (Denmark) API for SE3/SE4 spot prices (no registration required)
+- **Price Fallback**: ENTSO-E Transparency Platform (if/when API becomes stable)
 - **Weather Data**: Met.no API via metno-locationforecast library
 - **Caching**: Redis for 24h price/weather data to respect rate limits
 
 **Core Components**:
-- **EnergyOptimizer**: CVXPY-based MPC solver with RC thermal model (VPS-hosted)
+- **EnergyOptimizer**: CVXPY-based MPC solver with HiGHS or CBC backend and RC thermal model (VPS-hosted)
 - **Battery Degradation Model**: Cycle cost integration to prevent excessive charge/discharge cycles
 - **Thermal Learning**: Linear regression to auto-calibrate R/C parameters from observed data
-- **Device Adapters**: Factory pattern for Tesla, Victron, MQTT integrations
+- **Device Adapters**: Factory pattern for cloud and gateway integrations
 - **Data Services**: Price fetcher (SE3/SE4 zones), weather service (lat/lon)
 - **Background Jobs**: Celery workers for optimization scheduling
-- **Gateway Bridge**: Lightweight Pi script for Modbus/MQTT communication only
+- **MQTT Infrastructure**: Paho-MQTT client + broker (Mosquitto) for gateway communication
 
 **Deployment Strategy**:
 - **VPS Hosting**: Hetzner (cost-effective European hosting)
 - **Centralized Optimization**: All MPC computations on VPS (x86 reliability)
 - **Edge Gateways**: Raspberry Pi as "dumb bridge" for local device communication
+
+## Device Integration Architecture
+
+**Cloud Integrations** (Direct API access):
+- **Tesla**: Powerwall API via Tesla Fleet API
+- **Victron**: VRM Portal API for GX devices
+- **Huawei**: FusionSolar API for inverter systems
+- **NIBE S-Series**: myUplink API for smart heat pumps
+
+**Gateway Integrations** (Raspberry Pi bridge required):
+- **NIBE F-Series**: Modbus 40 accessory or USB-to-RS485 + Husdata H1
+- **Huawei Local**: Direct inverter communication via Pi gateway
+- **Generic Modbus**: Any Modbus RTU/TCP device via Pi gateway
+- **Custom Protocols**: Extensible for proprietary local interfaces
+
+**MQTT Infrastructure**:
+- **Broker**: Mosquitto running on VPS for centralized message routing
+- **Client**: Paho-MQTT library for Python gateway and backend communication
+- **Topics**: Structured hierarchy for device commands and telemetry
 
 ## Development Environment
 **Required Tools**:
@@ -41,6 +61,7 @@ fastapi, uvicorn, sqlalchemy, pydantic-settings
 cvxpy, requests, metno-locationforecast
 celery, redis, psycopg2-binary
 scikit-learn  # For thermal parameter regression
+paho-mqtt     # For MQTT client communication
 ```
 
 ## Code Standards

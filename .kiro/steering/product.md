@@ -26,7 +26,8 @@ NordicFlux is a zero-cost SaaS Energy Management System that uses Model Predicti
 **User Needs**: Automated energy cost reduction, environmental consciousness, real-time optimization, and integration with existing energy systems.
 
 ## Key Features
-- **Zero-Cost Operation**: Uses only free APIs (Energi Data Service, Met.no weather)
+- **No-Brainer Zero-Cost Offer**: We help you save money and charge 30% of what we help you save (we'll need to do some calculations to ensure this is a feasible choice)
+- **Cost-Effective**: Leverage free APIs as much as possible (Energi Data Service, Met.no weather)
 - **MPC Optimization**: 24-hour scheduling using CVXPY solver with RC thermal model (Battery Degradation Taken into account - see tech.md)
 - **Auto-Calibration**: Continuous learning from real performance data to refine thermal parameters (linear regression and COP Non-linearity Handling if necessary - more details in tech.md)
 - **Multi-Device Support**: Extensible adapter pattern for Tesla, Victron, local systems

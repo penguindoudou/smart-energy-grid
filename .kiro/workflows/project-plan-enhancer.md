@@ -1,0 +1,95 @@
+# Project Plan Enhancement Workflow
+
+## Overview
+A three-stage workflow to systematically analyze and improve project plans using parallel subagent analysis followed by intelligent synthesis.
+
+## Workflow Steps
+
+### Stage 1: Context Loading
+```
+@prime
+```
+**Purpose**: Load comprehensive project context including current implementation state, tech stack, and recent development focus.
+
+**Output**: Full understanding of project status for informed analysis.
+
+### Stage 2: Parallel Analysis
+```
+@project-plan-director
+```
+**Purpose**: Spawn 7 specialized subagents to analyze project plan across key dimensions:
+- Quality & Reliability
+- Engineering Complexity  
+- Cost & Sustainability
+- Scalability
+- User Experience
+- Social Impact
+- Market Positioning
+
+**Output**: 7 focused analysis files in `.kiro/analysis/plan_suggestions/`
+
+**Quality Control**: Review generated files before synthesis to:
+- Ensure all subagents completed successfully
+- Verify analysis quality and relevance
+- Remove or edit any suggestions that seem off-target
+- Add any missing perspectives manually
+
+### Stage 3: Synthesis & Prioritization
+```
+@plan-synthesis
+```
+**Purpose**: Consolidate all suggestions into prioritized, actionable roadmap.
+
+**Output**: `summarized_improvements.md` with:
+- Priority-ordered improvements
+- Quick wins identification
+- Implementation timeline
+- Discarded suggestions with rationale
+- Clarifying questions
+
+## Quality Gates
+
+### Before Synthesis
+- [ ] All 7 analysis files generated
+- [ ] Review each file for relevance and quality
+- [ ] Edit or remove any inappropriate suggestions
+- [ ] Ensure suggestions align with MVP/lean constraints
+
+### After Synthesis
+- [ ] Priorities make sense for current project phase
+- [ ] Quick wins are genuinely actionable
+- [ ] Discarded suggestions are properly justified
+- [ ] Implementation steps are specific and clear
+
+## Customization Options
+
+### Modify Analysis Scope
+Edit `@project-plan-director` to:
+- Add/remove analysis dimensions
+- Adjust subagent instructions
+- Change output file structure
+
+### Control Synthesis Input
+Before running `@plan-synthesis`:
+- Manually edit analysis files in `.kiro/analysis/plan_suggestions/`
+- Add your own analysis files following the same format
+- Remove files you don't want included in synthesis
+
+### Iterate on Results
+- Re-run synthesis with modified inputs
+- Create multiple synthesis versions for comparison
+- Use synthesis output to refine original project plans
+
+## Best Practices
+
+1. **Run when major changes occur** to project scope, tech stack, or market conditions
+2. **Review intermediate outputs** - don't blindly trust all subagent suggestions
+3. **Focus on actionability** - prefer specific, implementable suggestions
+4. **Balance perfectionism vs shipping** - prioritize MVP launch readiness
+5. **Document decisions** - track which suggestions you implement and why
+
+## Expected Timeline
+- Stage 1 (Context): 2-3 minutes
+- Stage 2 (Analysis): 5-10 minutes (parallel execution)
+- Stage 3 (Synthesis): 3-5 minutes
+- **Total**: ~15 minutes for comprehensive plan analysis
