@@ -65,12 +65,14 @@ Generate `summarized_improvements.md` with this structure:
 
 ### Step 4: Quality Criteria
 Ensure the synthesis:
+- **Embraces valuable complexity** that's well-supported by AI agents and documentation
+- **Rejects harmful complexity** that introduces maintenance burden, instability, or unaffordable costs
 - **Prioritizes MVP launch readiness** over perfect solutions
 - **Balances quick wins** with strategic improvements  
-- **Provides clear rationale** for each priority level
+- **Provides clear rationale** for each priority level including complexity trade-offs
 - **Identifies dependencies** between improvements
 - **Flags genuine conflicts** requiring decisions
-- **Stays actionable** with specific next steps
+- **Stays actionable** with specific next steps and verification methods
 
 ## Expected Outcome
 Single consolidated document that transforms 7 specialized analyses into a clear, prioritized action plan for improving the project plan while maintaining MVP focus and lean operations.

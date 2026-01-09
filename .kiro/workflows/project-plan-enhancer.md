@@ -3,6 +3,8 @@
 ## Overview
 A three-stage workflow to systematically analyze and improve project plans using parallel subagent analysis followed by intelligent synthesis.
 
+**Primary Use Case**: Early project planning phase to validate and refine initial project plans (product.md, tech.md, structure.md) before significant development begins.
+
 ## Workflow Steps
 
 ### Stage 1: Context Loading
@@ -82,11 +84,13 @@ Before running `@plan-synthesis`:
 
 ## Best Practices
 
-1. **Run when major changes occur** to project scope, tech stack, or market conditions
-2. **Review intermediate outputs** - don't blindly trust all subagent suggestions
-3. **Focus on actionability** - prefer specific, implementable suggestions
-4. **Balance perfectionism vs shipping** - prioritize MVP launch readiness
-5. **Document decisions** - track which suggestions you implement and why
+1. **Run early in project lifecycle** - Most valuable during initial planning phase before major development begins
+2. **Use for plan validation** - Catch potential issues in project strategy before they become expensive to fix
+3. **Run when major changes occur** to project scope, tech stack, or market conditions
+4. **Review intermediate outputs** - don't blindly trust all subagent suggestions
+5. **Focus on actionability** - prefer specific, implementable suggestions
+6. **Balance perfectionism vs shipping** - prioritize MVP launch readiness
+7. **Document decisions** - track which suggestions you implement and why
 
 ## Expected Timeline
 - Stage 1 (Context): 2-3 minutes

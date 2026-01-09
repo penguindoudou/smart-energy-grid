@@ -30,8 +30,10 @@ Launch 7 specialized subagents to analyze the project plan:
 - Output: `01_quality_reliability.md`
 
 **Subagent 2: Engineering Complexity**
-- Evaluate over-engineering vs efficient complexity balance
-- Identify areas where complexity adds value vs unnecessary overhead
+- Evaluate complexity trade-offs: high-value complexity vs unnecessary overhead
+- Consider implementation feasibility with AI coding agents and available documentation
+- Identify complexity that's worth adding (great value + easy to implement/verify)
+- Flag complexity to avoid: frequent maintenance, instabilities, vulnerabilities, unjustified costs
 - Suggest simplification opportunities without sacrificing core functionality
 - Output: `02_engineering_complexity.md`
 
@@ -71,7 +73,11 @@ Each subagent should:
 
 1. **Read project context** from steering documents (product.md, tech.md, structure.md)
 2. **Create analysis file** in `.kiro/analysis/plan_suggestions/` with assigned filename
-3. **Structure suggestions** as:
+3. **Apply complexity evaluation criteria**:
+   - **Good complexity**: High value + easy to implement with AI coding agents + well-documented online + easy to verify results
+   - **Bad complexity**: Frequent maintenance + instabilities + security vulnerabilities + costs users can't afford
+   - **Implementation context**: Leverage AI coding agents' strengths and online documentation availability
+4. **Structure suggestions** as:
    ```markdown
    # [Analysis Area] Suggestions
    
@@ -92,7 +98,12 @@ Each subagent should:
    ```
 
 4. **Focus on actionable suggestions** with clear implementation guidance
-5. **Consider MVP constraints** - prioritize what enables launch vs future optimization
+5. **Focus on strategic complexity decisions** considering:
+   - AI coding agent implementation capabilities
+   - Availability of online documentation and examples
+   - Verification and testing feasibility
+   - Long-term maintenance burden vs value delivered
+6. **Consider MVP constraints** - prioritize what enables launch vs future optimization
 
 ## Expected Outcome
 7 specialized analysis files ready for synthesis into prioritized improvement roadmap.
