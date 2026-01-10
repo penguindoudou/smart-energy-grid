@@ -30,11 +30,35 @@ This research supports multiple NordicFlux objectives:
 - **Heat Pump Control**: Temperature monitoring and control capabilities
 - **Simplified Auth Option**: Client credentials flow available (no user redirect)
 
-### ⚠️ Research Needed
-- **Control Command Rate Limits**: How often can we send temperature setpoint changes?
-- **Real-time Data Frequency**: Update intervals for temperature readings
-- **Available Control Parameters**: What thermal settings can be modified via API?
+### ✅ API Capabilities Confirmed
+- **Rate Limits**: 25 requests/minute for both B2C and B2B APIs (suitable for MPC needs)
+- **Real-time Data Access**: `GET /v2/devices/{deviceId}/points` returns telemetry including outdoor temperature
+- **Control Capabilities**: Device points can be updated, device settings can be modified via API
+- **Equipment Constraint**: "You can only get data from your own equipment" (B2C) / "devices you have access to" (B2B)
+
+### ⚠️ Still Need Research
+- **Specific Control Parameters**: Which thermal setpoints are available for modification?
 - **Device Compatibility**: Which specific S-series models supported?
+- **Update Frequency**: How often are device points refreshed?
+
+### ❌ Testing Limitations
+- **No Simulation Possible**: "You can only get data from your own equipment" (B2C) / "devices you have access to" (B2B)
+- **Swagger Exploration Only**: Can view API structure but not test actual functionality
+- **Equipment Access Blocker**: Need actual NIBE heat pump or willing owner for validation
+
+### Business Model Implications
+
+**B2C OAuth Model** (Individual Users):
+- Standard OAuth 2.0 flow with user consent
+- Each user connects their own NIBE account
+- 25 requests/minute per application
+- Suitable for direct consumer sales
+
+**B2B PRO Model** (Service Partners):
+- Premium subscription required for API access
+- Service partner can manage multiple customer devices
+- Same 25 requests/minute limit
+- Ideal for installer partnerships and bulk deployments
 
 ## Data Polling Feasibility for MPC
 
@@ -44,10 +68,12 @@ This research supports multiple NordicFlux objectives:
 - Heat pump status: Every 5-15 minutes  
 - Control commands: 1-4 times per day (optimization schedule)
 
-**myUplink Capabilities**:
-- RESTful API with standard HTTP polling
-- Multiple integrations successfully poll for real-time data
-- OAuth 2.0 token refresh handling proven in existing integrations
+**myUplink API Details**:
+- **B2C API**: `api.myuplink.com` - 25 requests/minute, OAuth 2.0, requires own equipment
+- **B2B PRO API**: `api-pro.myuplink.com` - 25 requests/minute, premium subscription required, service partner groups
+- **Data Access**: `GET /v2/devices/{deviceId}/points` for telemetry (outdoor temp, device status)
+- **Control Confirmed**: Device points and settings can be updated via API endpoints
+- **Equipment Constraint**: Testing requires actual NIBE devices - no simulation available
 
 ### Recommended Integration Strategy
 ```python
@@ -68,10 +94,11 @@ class NibeMyUplinkAdapter(EnergyDevice):
 - **Node-RED flows**: OAuth callback handling examples
 
 **Key Technical Details**:
-- **API Endpoint**: `https://api.nibeuplink.com` (older) vs `https://dev.myuplink.com` (S-series)
+- **API Domains**: `api.myuplink.com` (B2C) vs `api-pro.myuplink.com` (B2B PRO)
 - **Authentication**: OAuth 2.0 with client credentials or authorization code flow
-- **Data Format**: JSON over HTTPS
-- **Developer Portal**: `https://dev.myuplink.com` for API registration
+- **Data Format**: JSON over HTTPS, ISO-8601 timestamps in UTC
+- **Rate Limiting**: 25 requests/minute with HTTP 429 error when exceeded
+- **Control Endpoints**: Groups and device points can be updated via PUT/POST requests
 
 **NordicFlux Adapter Requirements**:
 - **Implement OAuth 2.0 flow** with token refresh handling
@@ -87,17 +114,18 @@ class NibeMyUplinkAdapter(EnergyDevice):
 **Market Validation**: S-series users already tech-savvy, good early adopters
 
 **Implementation Strategy**:
-1. **Register developer account** at dev.myuplink.com
-2. **Study existing integrations** for OAuth implementation patterns
-3. **Research control endpoints** for temperature setpoint management
-4. **Build thermal adapter** following our device interface pattern
-5. **Validate MPC algorithms** with real S-series heat pump data
+1. **Study existing integrations** for OAuth implementation patterns
+2. **Research control endpoints** for temperature setpoint management
+3. **Build thermal adapter** following our device interface pattern
+4. **Validate MPC algorithms** with real S-series heat pump data
+5. **Future B2B expansion**: Leverage installer connections for API key access to multiple devices
 
 ### Risk Mitigation
 - **Multiple proven integrations** reduce implementation risk
 - **Standard OAuth 2.0** well-documented and supported
 - **RESTful API** fits existing cloud integration architecture
 - **Heat pump focus** aligns with core NordicFlux value proposition
+- **Dual business model potential** (B2C OAuth + B2B API keys)
 
 ## Conclusion
 

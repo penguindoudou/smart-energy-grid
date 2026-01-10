@@ -25,7 +25,8 @@ Quick reference for device integration research and implementation guidance.
    - Verify: Control command rate limits and latency
 2. **NIBE S-series myUplink API** - Phase 1 target, heat pump optimization validation
    - ✅ **OAuth 2.0 confirmed** - Modern standard authentication
-   - Research needed: Control command rate limits, available thermal parameters
+   - ✅ **Control capabilities confirmed** - Device settings and points can be updated
+   - ❌ **Equipment access required** - Need actual NIBE devices for testing
 
 ### Medium Priority (Phase 2 Expansion)  
 3. **Victron VRM Portal API** - Strong community, good documentation expected
@@ -68,11 +69,13 @@ Quick reference for device integration research and implementation guidance.
 
 | Device | Phase | Complexity | Market Size | Implementation Status |
 |--------|-------|------------|-------------|---------------------|
-| NIBE S-series | 1 | Low | Small | OAuth 2.0 confirmed, control research needed |
+| NIBE S-series | 1 | Low* | Small | OAuth 2.0 + control confirmed, equipment access required |
 | Tesla Powerwall | 2 | Medium | Large | Not started |
 | Victron | 2 | Medium | Medium | Not started |
 | FusionSolar | 2 | High* | Medium | Monitoring research complete, control unknown |
 | NIBE F-series | 3 | High | Large | Not started |
+
+*Low complexity for API integration, but requires actual equipment for testing
 
 *High complexity due to API access requirements and unknown control capabilities
 
