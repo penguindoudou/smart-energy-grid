@@ -24,6 +24,7 @@ Identify patterns, conflicts, and synergies across all suggestions:
 - **Conflicting recommendations** that need resolution
 - **Synergistic improvements** that amplify each other
 - **Resource dependencies** between suggestions
+- **Research priorities** - consolidate and prioritize research needs from all analyses
 
 ### Step 3: Create Consolidated Roadmap
 Generate `summarized_improvements.md` with this structure:
@@ -58,6 +59,18 @@ Generate `summarized_improvements.md` with this structure:
 ## Clarifying Questions
 - [Areas where more information is needed before deciding]
 - [Trade-offs that require user input/decision]
+
+## Research Agenda
+### High Priority Research
+- [Critical research needed before MVP decisions]
+- [Current market/technology trends to investigate]
+
+### Medium Priority Research  
+- [Research that would improve post-MVP planning]
+- [Competitive analysis and benchmarking needs]
+
+### Future Research
+- [Long-term strategic research topics]
 
 ## Implementation Timeline
 [Suggested order of execution with rough timeframes]

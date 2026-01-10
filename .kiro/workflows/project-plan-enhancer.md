@@ -3,7 +3,24 @@
 ## Overview
 A three-stage workflow to systematically analyze and improve project plans using parallel subagent analysis followed by intelligent synthesis.
 
+## Usage
+- **Parallel Mode** (default): `@project-plan-director` or `@project-plan-director parallel`  
+- **Sequential Mode**: `@project-plan-director sequential`
+
+**Mode Selection:**
+- **Sequential**: Choose when you need current market research integrated into analysis, or when dealing with rapidly evolving technology domains
+- **Parallel**: Choose for speed when project domain is well-understood and research needs can be addressed separately
+
 **Primary Use Case**: Early project planning phase to validate and refine initial project plans (product.md, tech.md, structure.md) before significant development begins.
+
+## Mode Comparison
+
+| Aspect | Sequential Mode | Parallel Mode |
+|--------|----------------|---------------|
+| **Speed** | 15-20 minutes | 5-10 minutes |
+| **Web Research** | Integrated per analysis | Flagged for follow-up |
+| **Context Sharing** | Analyses can build on each other | Independent perspectives |
+| **Best For** | Rapidly evolving domains, market research needs | Well-understood domains, speed priority |
 
 ## Workflow Steps
 
@@ -48,6 +65,7 @@ A three-stage workflow to systematically analyze and improve project plans using
 - Implementation timeline
 - Discarded suggestions with rationale
 - Clarifying questions
+- **Research agenda** with prioritized web research topics
 
 ## Quality Gates
 

@@ -16,7 +16,7 @@ NordicFlux is a zero-cost SaaS Energy Management System that uses Model Predicti
 - **Phase 1**: NIBE S-series (myUplink API) - validate MPC algorithms, cloud-only
 - **Phase 2**: Tesla/Victron cloud APIs - global expansion
 - **Phase 3**: Huawei systems (Pi gateway) - Gnesta solar + battery market
-- **Phase 4**: NIBE F-series (Pi gateway) - capture 70% of Swedish marketI (desperate for a way to optimize consumption without buying a new 100,000 SEK heat pump) 
+- **Phase 4**: NIBE F-series (Pi gateway) - capture 70% of Swedish marketI (desperate for a way to optimize consumption without buying a new 100,000 SEK heat pump - according to Gemini) 
 
 **Market Reality**:
 - **S-series owners**: Already have smart features, harder sell for optimization
@@ -26,7 +26,7 @@ NordicFlux is a zero-cost SaaS Energy Management System that uses Model Predicti
 **User Needs**: Automated energy cost reduction, environmental consciousness, real-time optimization, and integration with existing energy systems.
 
 ## Key Features
-- **No-Brainer Zero-Cost Offer**: We help you save money and charge 30% of what we help you save (we'll need to do some calculations to ensure this is a feasible choice)
+- **No-Brainer Zero-Cost Offer**: We help you save money by optimizing your heating and batteries and charge 30% of what we help you save (we'll need to do some calculations to ensure this is a feasible choice)
 - **Cost-Effective**: Leverage free APIs as much as possible (Energi Data Service, Met.no weather)
 - **MPC Optimization**: 24-hour scheduling using CVXPY solver with RC thermal model (Battery Degradation Taken into account - see tech.md)
 - **Auto-Calibration**: Continuous learning from real performance data to refine thermal parameters (linear regression and COP Non-linearity Handling if necessary - more details in tech.md)
