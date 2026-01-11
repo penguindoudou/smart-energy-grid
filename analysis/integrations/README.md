@@ -41,12 +41,18 @@ Quick reference for device integration research and implementation guidance. Nor
 - **Implementation**: B2B installer partnerships only - unsuitable for Phase 1 validation
 
 ### Victron VRM Portal API
-- **File**: `victron_API_v2.md`
-- **Status**: ✅ RESEARCH COMPLETE - High Priority Phase 2
-- **Key Finding**: Comprehensive ESS control capabilities with free API access and 2 req/sec rate limits
-- **Implementation**: Use `ocf-vrmapi` library with Node-RED community ESS control patterns
+- **File**: `victron_API_v3.md` (LATEST)
+- **Status**: ✅ HIGH PRIORITY - PHASE 1 (Hardware-free validation available)
+- **Key Finding**: Demo environment (User ID 22, Site ID 13388) enables complete API validation without hardware. Monitoring-focused for Phase 1, MQTT control for Phase 2
+- **Implementation**: Start with demo environment validation, progress to MQTT bridge for full control
 
-### Planned Research
+### NIBE myUplink API
+- **File**: `nibe_myuplink_API_v4.md` - **LATEST**
+- **Status**: ✅ **HIGH PRIORITY - PHASE 1B** (Hardware required for validation)
+- **Key Finding**: Comprehensive heat pump control with OAuth 2.0 authentication, 25 requests/minute rate limits, and strong community adoption. **Platform migration in January 2024 eliminated demo environment** - validation now limited to documentation and community libraries only.
+- **Implementation**: Both B2C individual users and B2B installer partnerships supported via consumer and PRO APIs
+
+### Research Completed
 - ✅ **`tesla_API_v3.md`** - Tesla Powerwall Fleet API capabilities (COMPLETED - LATEST VERSION)
 - ✅ **`victron_API_v2.md`** - VRM Portal API for GX devices (COMPLETED)
 - ✅ **`nibe_myuplink_API.md`** - NIBE myUplink API for S-series heat pumps (COMPLETED)
@@ -66,11 +72,12 @@ Quick reference for device integration research and implementation guidance. Nor
    - **Verdict**: ✅ HIGH PRIORITY - PHASE 1B (requires hardware for validation)
    - **Key Finding**: OAuth 2.0 + mature Python library + comprehensive energy site control [1][5]
    - **Implementation**: Use `tesla-fleet-api` v1.4.0 after securing hardware access
-3. ✅ **NIBE myUplink API** - RESEARCH COMPLETE (Hardware Required)
-   - **File**: `nibe_myuplink_API.md` - Comprehensive dual-API research (B2C + B2B)
-   - **Verdict**: ✅ HIGH PRIORITY - PHASE 1B (requires hardware for validation)
-   - **Key Finding**: OAuth 2.0 + heat pump control + 25 req/min + B2C/B2B compatibility
-   - **Implementation**: Direct API integration after securing hardware access
+3. ✅ **NIBE myUplink API** - RESEARCH UPDATED (Hardware Required for Validation)
+   - **File**: `nibe_myuplink_API_v2.md` - **LATEST** - Comprehensive dual-API research with platform migration impact analysis
+   - **Verdict**: ✅ **HIGH PRIORITY - PHASE 1B** (hardware required for validation)
+   - **Key Finding**: OAuth 2.0 + comprehensive heat pump control + 25 req/min + strong community libraries + B2C/B2B dual model
+   - **Platform Migration Impact**: Demo environment eliminated in January 2024 - validation now limited to documentation + community code
+   - **Implementation**: Use `nibeuplink` Python library + community integration patterns, but requires hardware for control validation
 
 ### Medium Priority (Phase 2 Expansion)  
 3. ✅ **Victron VRM Portal API** - RESEARCH COMPLETE
@@ -132,7 +139,7 @@ Quick reference for device integration research and implementation guidance. Nor
 |--------|-------|------------|-------------|---------------------|
 | **Victron** | **1** | **Low** | **Medium** | **✅ Research complete - Demo environment available (User ID 22, Site ID 13388)** |
 | Tesla Powerwall | 1B | Low* | Large | ✅ Research complete v3 - OAuth 2.0 + comprehensive control + 1M+ installs |
-| NIBE myUplink | 1B | Low* | Medium | ✅ Research complete - OAuth 2.0 + heat pump control + B2C/B2B dual model |
+| NIBE myUplink | 1B | Low* | Medium | ✅ Research complete v4 - OAuth 2.0 + comprehensive heat pump control + B2C/B2B dual model (demo retired Jan 2024) |
 | **MQTT Bridge** | **2** | **Medium** | **Universal** | **✅ Research complete - Hardware-free validation + zero operational costs** |
 | FusionSolar | 3+ | High** | Medium | ❌ Research complete v2 - Manual account barrier prevents Phase 1 validation |
 | NIBE F-series | 3 | High | Large | Not started |

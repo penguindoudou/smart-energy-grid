@@ -2,21 +2,61 @@
 
 **Project**: NordicFlux - Zero-Cost SaaS Energy Management System  
 **Duration**: January 5-23, 2026  
-**Total Time**: 6 hours  
+**Total Time**: 14 hours  
 
 ## Overview
 Building a zero-cost SaaS Energy Management System using Model Predictive Control (MPC) to optimize battery storage and thermal heating based on free Nordpool prices and weather data. The system targets Swedish homeowners with heat pumps and battery systems, focusing on immediate value delivery with continuous learning.
 
+### Day 5 (Jan 9-10) - Workflow Development & Technical Research [8h]
+- **Evening (Jan 9) - Morning (Jan 10)**: Workflow creation and technical stack research (with food breaks)
+- **Key Accomplishments**:
+  - Created workflow to update tech stack systematically
+  - Developed workflow to enhance product planning process
+  - Conducted initial research on NIBE integration possibilities
+  - Researched Fusion Solar API and NIBE S-series integration options
+  - Enhanced project analysis prompts for better setup workflows
+
+**Technical Research**:
+- **NIBE Integration**: Investigated both S-series (myUplink API) and F-series (Modbus) approaches
+- **Fusion Solar API**: Explored Huawei inverter integration possibilities
+- **Workflow Automation**: Created systematic approaches for tech stack updates and product enhancement
+
+**Critical Learning - LLM Usage Strategy**:
+- **Problem**: Spending excessive time validating LLM-provided technical details
+- **Insight**: LLMs should suggest frameworks/approaches, NOT provide implementation details
+- **New Approach**: Use LLMs for suggestions → Get official documentation → Make decisions based on real docs
+- **Impact**: This realization will significantly speed up technical decision-making process
+
+**Challenges**:
+- **Detail Rabbit Holes**: Getting lost in LLM-generated technical details instead of focusing on official sources
+- **Time Management**: 8 hours spent on research/workflows vs actual implementation
+
+**Solutions**:
+- **Documentation-First Approach**: Prioritize official docs over LLM technical confirmations
+- **Workflow Systematization**: Created repeatable processes for tech stack and product decisions
+- **Research Boundaries**: Limit LLM usage to high-level suggestions, not detailed validation
+
+**Kiro Usage**:
+- **Workflow Creation**: Developed systematic prompts for tech stack updates
+- **Project Analysis**: Enhanced setup workflows with complexity awareness
+- **Research Organization**: Used Kiro to structure and document findings
+
+**Git Activity**:
+- Multiple commits on NIBE integration research
+- Fusion Solar API investigation
+- Workflow enhancement for product/tech updates
+- Project analysis prompt improvements
+
 ---
 
-## Week 1: Foundation & Strategic Planning (Jan 5-9)
+## Week 1: Foundation & Strategic Planning (Jan 5-10)
 
 ### Day 3 (Jan 8) - Strategic Planning & Architecture Design [6h]
 - **23:30-05:30**: Deep dive into Kiro CLI workflow and prompt ecosystem
 
-### Day 4 (Jan 9) - Strategic Planning & Architecture Design [~6h]
-- **16:00-:19:00**: Deep dive into Kiro CLI workflow and prompt ecosystem
-- **23:30-03:46**: Collaborative product strategy refinement with AI assistants (Kiro + Gemini)
+### Day 4 (Jan 8-9) - Strategic Planning & Architecture Design [6h]
+- **16:00-19:00 (Jan 8)**: Deep dive into Kiro CLI workflow and prompt ecosystem
+- **23:30-03:46 (Jan 8-9)**: Collaborative product strategy refinement with AI assistants (Kiro + Gemini)
 - **Key Accomplishments**: 
   - Completed comprehensive steering documents (product.md, tech.md, structure.md)
   - Defined zero-cost SaaS architecture with intelligent API selection
@@ -90,10 +130,11 @@ Building a zero-cost SaaS Energy Management System using Model Predictive Contro
 
 | Category | Hours | Percentage |
 |----------|-------|------------|
-| Strategic Planning | 3h | 50% |
-| Technical Architecture | 2h | 33% |
-| Documentation | 1h | 17% |
-| **Total** | **6h** | **100%** |
+| Strategic Planning | 6h | 43% |
+| Workflow Development | 4h | 29% |
+| Technical Research | 3h | 21% |
+| Documentation | 1h | 7% |
+| **Total** | **14h** | **100%** |
 
 ---
 

@@ -1,13 +1,13 @@
 # Technical Architecture
 
 ## Technology Stack
-**Core Stack**: Python 3.11+ Monorepo with FastAPI backend and React frontend
-- **Backend**: FastAPI (async), SQLAlchemy 2.0, PostgreSQL
-- **Math Engine**: CVXPY for Model Predictive Control optimization
+**Core Stack**: FastAPI + CLARABEL + PostgreSQL/TimescaleDB + Redis + MQTT
+- **Backend**: FastAPI (async), SQLAlchemy 2.0, PostgreSQL with TimescaleDB extension
+- **Math Engine**: CLARABEL solver via CVXPY for Model Predictive Control optimization
 - **Task Queue**: Redis + Celery for background MPC computations
 - **Frontend**: React (Vite), TypeScript, Tailwind CSS, Recharts
-- **Gateway**: Lightweight Python (Paho-MQTT) for Raspberry Pi
-- **Deployment**: Docker Compose on Linux VPS
+- **Gateway**: Lightweight Python (Paho-MQTT) for Raspberry Pi (Phase 2)
+- **Deployment**: Docker Compose on Linux VPS (Hetzner)
 
 ## Architecture Overview
 **Zero-Cost Data Sources**:
@@ -17,7 +17,7 @@
 - **Caching**: Redis for 24h price/weather data to respect rate limits
 
 **Core Components**:
-- **EnergyOptimizer**: CVXPY-based MPC solver with HiGHS or CBC backend and RC thermal model (VPS-hosted)
+- **EnergyOptimizer**: CLARABEL-based MPC solver with OSQP fallback and RC thermal model (VPS-hosted)
 - **Battery Degradation Model**: Cycle cost integration to prevent excessive charge/discharge cycles
 - **Thermal Learning**: Linear regression to auto-calibrate R/C parameters from observed data
 - **Device Adapters**: Factory pattern for cloud and gateway integrations
@@ -32,17 +32,22 @@
 
 ## Device Integration Architecture
 
-**Cloud Integrations** (Direct API access):
+**Cloud Integrations** (Direct API access via HTTP/OAuth):
 - **Tesla**: Powerwall API via Tesla Fleet API
 - **Victron**: VRM Portal API for GX devices
 - **Huawei**: FusionSolar API for inverter systems
 - **NIBE S-Series**: myUplink API for smart heat pumps
 
-**Gateway Integrations** (Raspberry Pi bridge required):
+**Gateway Integrations** (Raspberry Pi bridge via Modbus/TCP):
 - **NIBE F-Series**: Modbus 40 accessory or USB-to-RS485 + Husdata H1
 - **Huawei Local**: Direct inverter communication via Pi gateway
 - **Generic Modbus**: Any Modbus RTU/TCP device via Pi gateway
 - **Custom Protocols**: Extensible for proprietary local interfaces
+
+**Multi-Tenant Architecture**:
+- **Database**: PostgreSQL Row Level Security (RLS) for tenant isolation
+- **Shared Resources**: Single database with tenant-scoped queries
+- **B2B Support**: Installer partnerships with multi-customer management
 
 **MQTT Infrastructure**:
 - **Broker**: Mosquitto running on VPS for centralized message routing
@@ -58,10 +63,11 @@
 **Key Dependencies**:
 ```
 fastapi, uvicorn, sqlalchemy, pydantic-settings
-cvxpy, requests, metno-locationforecast
+cvxpy, clarabel, requests, metno-locationforecast
 celery, redis, psycopg2-binary
 scikit-learn  # For thermal parameter regression
 paho-mqtt     # For MQTT client communication
+asyncpg       # For TimescaleDB async connections
 ```
 
 ## Code Standards
@@ -115,10 +121,11 @@ Heat pump efficiency (COP) varies significantly with outdoor temperature, affect
 **Monitoring**: Health checks for optimization scheduling
 
 ## Performance Requirements
-**MPC Solver**: <30 seconds for 24-hour optimization
+**MPC Solver**: <1 second for 24-hour optimization (CLARABEL), <30 seconds fallback (OSQP)
 **API Response**: <200ms for simulation endpoints
 **Data Refresh**: Hourly price updates, 6-hour weather updates
 **Scalability**: Support 1000+ concurrent optimizations
+**Time-Series Performance**: 10-100x faster queries with TimescaleDB vs standard PostgreSQL
 
 ## Security Considerations
 **API Access**: No API keys required for Energi Data Service (public data)

@@ -54,12 +54,13 @@ Building a zero-cost SaaS Energy Management System using Model Predictive Contro
 
 ## Instructions
 
-1. **Read the current DEVLOG.md** to understand the existing structure and content
-2. **Collect the required information** from the user about their recent work
-3. **Add a new daily entry** in the appropriate chronological location
-4. **Update running totals** (time, Kiro usage statistics)
-5. **Update category breakdowns** (backend, frontend, optimization, etc.)
-6. **Maintain professional tone** suitable for hackathon submission
+1. **Check git logs** to see recent commits and understand what work was done
+2. **Read the current DEVLOG.md** to understand the existing structure and content
+3. **Collect the required information** from the user about their recent work (supplementing git log insights)
+4. **Add a new daily entry** in the appropriate chronological location
+5. **Update running totals** (time, Kiro usage statistics)
+6. **Update category breakdowns** (backend, frontend, optimization, etc.)
+7. **Maintain professional tone** suitable for hackathon submission
 
 ## Key Principles
 - **Be specific**: Include actual feature names, file names, technical details
