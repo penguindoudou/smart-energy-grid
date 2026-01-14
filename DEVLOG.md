@@ -7,6 +7,36 @@
 ## Overview
 Building a zero-cost SaaS Energy Management System using Model Predictive Control (MPC) to optimize battery storage and thermal heating based on free Nordpool prices and weather data. The system targets Swedish homeowners with heat pumps and battery systems, focusing on immediate value delivery with continuous learning.
 
+### Day 6 (Jan 11-12) - Workflow Development & Technical Research [8h]
+
+
+  - **Key Accomplishments**:
+    - Integrated s.jina, r.jina for as an inline tool for and managed to get a subagent to use it to conduct research - this makes me trust the agent more
+    - Being able to prompt the agent to test itself and run several iteration on the same prompt and see different results gives me higher confidence when the results are aligned
+    - Asked kiro to evaluate it's own research regarding an NIBE Uplink API, which led to a better research prompt 
+    - Researched Fusion Solar API and NIBE S-series integration options
+    - Enhanced project analysis prompts for better setup workflows
+
+  **Challenges**:
+  - **Research Rabbit vs Smart House vs Learning the Kiro Tool**: Research is interesting and so is improving the system, but gotta start coding soon. We improved the research process slightly, I'm wondering how far we could improve it here. Since a reliable research system that reasons over SOTA research and implements based on it would be awesome.
+
+### Day 6 (Jan 10-11) - Workflow Development & Technical Research [8h]
+- **Evening (Jan 10) - Morning (Jan 11)**: Research flow, research tracking and research evaluation refinement.
+
+  - **Key Accomplishments**:
+    - Managed to leave the details and focus on the overall picture
+    - Specific prompts now tells the agent to use certain files in the file structure and save new ones 
+    - Asked kiro to evaluate it's own research regarding an NIBE Uplink API, which led to a better research prompt 
+    - Researched Fusion Solar API and NIBE S-series integration options
+    - Enhanced project analysis prompts for better setup workflows
+
+  **Challenges**:
+  - **Research Rabbit Holes**: Research is interesting and so is improving the system, but gotta start coding soon. We improved the research process slightly, I'm wondering how far we could improve it here. Since a reliable research system that reasons over SOTA research and implements based on it would be awesome.
+  - **How can I trust the LLM?**
+  - Coding we can at least set up local tests, but information can be trickier. I do wonder if it would be different if I used RAG or a scarper. But isn't that similar to web fetch?
+  - **Time Management**: 8 hours spent on research and prompt enhancement
+
+
 ### Day 5 (Jan 9-10) - Workflow Development & Technical Research [8h]
 - **Evening (Jan 9) - Morning (Jan 10)**: Workflow creation and technical stack research (with food breaks)
 - **Key Accomplishments**:

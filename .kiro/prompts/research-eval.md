@@ -16,6 +16,13 @@ When user provides just a filename (no path):
    - **No issues found**: Save in a subfolder with filename based on the original name `eval/{orginal filename}_eval_{version}.md`, check the path first to determine the version. For example if if a file ending with '_eval_1.md' or '_eval.md' save the new file `eval/{orginal filename}_eval_2.md`.
    - **Issues found**: Save in `critic_eval/` subfolder, use the same saving logic as above with `_critic_eval_{version}` instead of `_eval_{version}` and request the original prompt that generated the report for improvement suggestions
 
+### 5. Balanced Skepticism
+## Apply Proportional Scrutiny
+- Flag clear contradictions and impossible claims
+- Note unverifiable items without assuming malicious intent
+- Distinguish between "cannot verify" vs "definitely false"
+- Focus on claims that would materially impact decision-making
+
 ## Output Format
 ```
 ## Quote Accuracy Check
@@ -41,6 +48,9 @@ When user provides just a filename (no path):
 - **VALID**: Conclusion logically follows from verified evidence
 - **INVALID**: Conclusion contradicted by evidence or based on false premises
 - **UNSUPPORTED**: Insufficient evidence to support the conclusion
+- **PARTIALLY ACCURATE**: Core claim correct but details may vary (e.g., exact numbers, timing)
+
+- **Time Awareness** Be sure to check the of the report to understand the context.
 
 
 ---
